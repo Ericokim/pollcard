@@ -1,0 +1,19 @@
+{
+  "checkbox": [
+    {
+      "id": "1",
+      "isChecked": false,
+      "name": "Dunlap Hubbard"
+    },
+    {
+      "id": "2",
+      "isChecked": false,
+      "name": "Kirsten Sellers"
+    },
+    {
+      "id": "3",
+      "isChecked": false,
+      "name": "Acosta Robbins"
+    }
+  ]
+}

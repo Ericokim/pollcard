@@ -1,92 +1,124 @@
 import React, { Component } from "react";
-// import Checkbox from "./Checkbox";
-import PropTypes from "prop-types";
+import axios from "axios";
+import { Card } from "react-bootstrap";
+import {
+  FaRegCommentDots,
+  FaRegThumbsUp,
+  FaShareAlt,
+  FaCommentDots,
+  FaThumbsUp
+} from "react-icons/fa";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-
-const checkboxes = [
-  {
-    name: "box-1",
-    key: "checkBox1",
-    label: "Check Box 1"
-  },
-  {
-    name: "box-2",
-    key: "checkBox2",
-    label: "Check Box 2"
-  },
-  {
-    name: "box-3",
-    key: "checkBox3",
-    label: "Check Box 3"
-  },
-  {
-    name: "box-4",
-    key: "checkBox4",
-    label: "Check Box 4"
-  }
-];
-
-// const Checkbox = ({ type = "checkbox", name, checked = false, onChange }) => (
-//   <input type={type} name={name} checked={checked} onChange={onChange} />
-// );
 
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      checkedItems: new Map()
+      checkbox: []
     };
+
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
-    const item = e.target.name;
-    const isChecked = e.target.checked;
-    this.setState(prevState => ({
-      checkedItems: prevState.checkedItems.set(item, isChecked)
-    }));
+    let checkbox = this.state.checkbox;
+    checkbox.forEach(item => {
+      if (item.name === e.target.name) item.isChecked = e.target.checked;
+    });
+    this.setState({ checkbox: checkbox });
   }
 
+  componentDidMount() {
+    axios
+      .get("http://localhost:3000/checkbox")
+      .then(res => {
+        const checkbox = res.data;
+        this.setState({ checkbox });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+
+  onSubmit = e => {
+    e.preventDefault();
+    console.log(this.state);
+  };
+
   render() {
+    const { checkbox } = this.state;
     return (
       <div className="container">
-        <div className="poll_card">
-          <form className="form-container">
-            <div className="poll_container">
-              {checkboxes.map(item => (
-                <label key={item.key}>
-                  <ul className="checkbox_list">
-                    {/* <Checkbox
-                name={item.name}
-                checked={this.state.checkedItems.get(item.name)}
-                onChange={this.handleChange}
-              /> */}
-                    <input
-                      type="checkbox"
-                      name={item.name}
-                      checked={this.state.checkedItems.get(item.name)}
-                      onChange={this.handleChange}
-                      className="checkbox-round"
-                    />
-                    {item.name}
+        <Card>
+          <Card.Body>
+            <Card.Title>
+              <h2>Save the multiple checkbox values in React js</h2>
+            </Card.Title>
+            <form onSubmit={this.onSubmit}>
+              <div className="form-check">
+                {checkbox.map(item => (
+                  <ul>
+                    <label key={item.id} className="form-check-label">
+                      <input
+                        type="checkbox"
+                        name={item.name}
+                        checked={this.state.isChecked}
+                        onChange={this.handleChange}
+                        className="form-check-input"
+                      />
+                      {item.name}
+                    </label>
                   </ul>
-                </label>
-              ))}
+                ))}
+              </div>
+
+              <div className="form-group-container">
+                <div className="form-group">
+                  <button className="confirm_button">Confirm</button>
+                </div>
+
+                <div className="form-group-icon">
+                  <div className="dark-thumb">
+                    <FaThumbsUp /> 150
+                  </div>
+                  <div className="dark-comment">
+                    <FaCommentDots /> 25
+                  </div>
+                </div>
+              </div>
+            </form>
+          </Card.Body>
+
+          <Card.Footer>
+            <div className="icon_card">
+              <div
+                className="icon"
+                onClick={() => this.handleViewBtnClick(this)}
+              >
+                <FaRegThumbsUp /> Like
+              </div>
+              <div
+                className="icon"
+                onClick={() => this.handleViewBtnClick(this)}
+              >
+                <FaRegCommentDots />
+                Comment
+              </div>
+              <div
+                className="icon"
+                onClick={() => this.handleViewBtnClick(this)}
+              >
+                <FaShareAlt />
+                Share
+              </div>
             </div>
-            <button className="confirm_button">Post Now</button>
-          </form>
-        </div>
+          </Card.Footer>
+        </Card>
       </div>
     );
   }
 }
-
-App.propTypes = {
-  type: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  checked: PropTypes.bool,
-  onChange: PropTypes.func.isRequired
-};
 
 export default App;
