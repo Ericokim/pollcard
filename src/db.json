@@ -3,17 +3,20 @@
     {
       "id": "1",
       "isChecked": false,
-      "name": "Dunlap Hubbard"
+      "name": "Dunlap Hubbard",
+      "time": null
     },
     {
       "id": "2",
       "isChecked": false,
-      "name": "Kirsten Sellers"
+      "name": "Kirsten Sellers",
+      "time": null
     },
     {
       "id": "3",
       "isChecked": false,
-      "name": "Acosta Robbins"
+      "name": "Acosta Robbins",
+      "time": null
     }
   ]
 }

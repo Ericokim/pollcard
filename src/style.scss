@@ -1,8 +1,41 @@
-.round {
-    position: relative;
+@keyframes socialShareAnimation {
+  from {
+    opacity: 0;
   }
-  
-  .round label {
+  to {
+    opacity: 1;
+  }
+}
+
+.socialShareContainer {
+  .socialShareButton {
+    height: 50px;
+    line-height: 50px;
+    padding: 0px 25px;
+    background: #666;
+    color: #fff;
+    cursor: pointer;
+  }
+  .closeShare {
+    display: none;
+    opacity: 0;
+  }
+  .openShare {
+    display: block;
+    opacity: 1;
+    animation: socialShareAnimation 1s;
+  }
+  a {
+    font-size: 20px;
+    color: #666;
+    margin: 0px 10px;
+  }
+}
+
+.round {
+  position: relative;
+
+  .form-check-label {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 50%;
@@ -13,8 +46,7 @@
     top: 0;
     width: 28px;
   }
-  
-  .round label:after {
+  .form-check-label:after {
     border: 2px solid #fff;
     border-top: none;
     border-right: none;
@@ -27,20 +59,16 @@
     transform: rotate(-45deg);
     width: 12px;
   }
-  
-  .round input[type="checkbox"] {
+  .form-check-input[type="checkbox"] {
     visibility: hidden;
   }
   
-  .round input[type="checkbox"]:checked + label {
+  .form-check-input[type="checkbox"]:checked + .form-check-label {
     background-color: #66bb6a;
     border-color: #66bb6a;
   }
   
-  .round input[type="checkbox"]:checked + label:after {
+  .form-check-input[type="checkbox"]:checked + .form-check-label:after {
     opacity: 1;
   }
-  
-  body {
-    background-color: #f1f2f3;
-  }
+}

@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Footerbtn from "./FooterBtn";
 import { Card } from "react-bootstrap";
-import {
-  FaRegCommentDots,
-  FaRegThumbsUp,
-  FaShareAlt,
-  FaCommentDots,
-  FaThumbsUp
-} from "react-icons/fa";
+import { FaCommentDots, FaThumbsUp } from "react-icons/fa";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -15,11 +10,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checkbox: []
+      checkbox: [],
+      likes: 124,
+      // time: new Date().toLocaleString()
     };
-
-    this.handleChange = this.handleChange.bind(this);
   }
+
+ 
 
   handleChange(e) {
     let checkbox = this.state.checkbox;
@@ -41,33 +38,43 @@ class App extends Component {
       });
   }
 
-
   onSubmit = e => {
     e.preventDefault();
     console.log(this.state);
+    // const item = {
+    //   checkedItems: this.state.checkedItems
+    // };
+
+    // axios.post(`http://localhost:3000/checkbox`, { item }).then(res => {
+    //   console.log(res);
+    //   console.log(res.data);
+    // });
   };
 
   render() {
     const { checkbox } = this.state;
+
     return (
       <div className="container">
         <Card>
           <Card.Body>
             <Card.Title>
-              <h2>Save the multiple checkbox values in React js</h2>
+              <h2 className="post_heading">
+                Save the multiple checkbox values in React js
+              </h2>
             </Card.Title>
             <form onSubmit={this.onSubmit}>
               <div className="form-check">
                 {checkbox.map(item => (
-                  <ul>
+                  <ul class="red customcb">
+                    <input
+                      type="checkbox"
+                      name={item.name}
+                      checked={this.state.isChecked}
+                      onChange={this.handleChange.bind(this)}
+                      className="form-check-input"
+                    />
                     <label key={item.id} className="form-check-label">
-                      <input
-                        type="checkbox"
-                        name={item.name}
-                        checked={this.state.isChecked}
-                        onChange={this.handleChange}
-                        className="form-check-input"
-                      />
                       {item.name}
                     </label>
                   </ul>
@@ -81,7 +88,7 @@ class App extends Component {
 
                 <div className="form-group-icon">
                   <div className="dark-thumb">
-                    <FaThumbsUp /> 150
+                    <FaThumbsUp /> {this.state.likes}
                   </div>
                   <div className="dark-comment">
                     <FaCommentDots /> 25
@@ -92,28 +99,7 @@ class App extends Component {
           </Card.Body>
 
           <Card.Footer>
-            <div className="icon_card">
-              <div
-                className="icon"
-                onClick={() => this.handleViewBtnClick(this)}
-              >
-                <FaRegThumbsUp /> Like
-              </div>
-              <div
-                className="icon"
-                onClick={() => this.handleViewBtnClick(this)}
-              >
-                <FaRegCommentDots />
-                Comment
-              </div>
-              <div
-                className="icon"
-                onClick={() => this.handleViewBtnClick(this)}
-              >
-                <FaShareAlt />
-                Share
-              </div>
-            </div>
+            <Footerbtn />
           </Card.Footer>
         </Card>
       </div>
