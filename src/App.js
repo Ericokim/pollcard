@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Checkbox from "./component/Checkbox";
 import Footerbtn from "./FooterBtn";
 import { Card } from "react-bootstrap";
 import { FaCommentDots, FaThumbsUp } from "react-icons/fa";
@@ -11,12 +12,14 @@ class App extends Component {
     super(props);
     this.state = {
       checkbox: [],
-      likes: 124,
+      likes: 124
       // time: new Date().toLocaleString()
     };
   }
 
- 
+  // handleCheckboxChange = event => {
+  //   this.setState({ checked: event.target.checked });
+  // };
 
   handleChange(e) {
     let checkbox = this.state.checkbox;
@@ -51,6 +54,8 @@ class App extends Component {
     // });
   };
 
+  state = { checked: false };
+
   render() {
     const { checkbox } = this.state;
 
@@ -64,18 +69,15 @@ class App extends Component {
               </h2>
             </Card.Title>
             <form onSubmit={this.onSubmit}>
-              <div className="form-check">
+              <div>
                 {checkbox.map(item => (
-                  <ul class="red customcb">
-                    <input
-                      type="checkbox"
-                      name={item.name}
-                      checked={this.state.isChecked}
-                      onChange={this.handleChange.bind(this)}
-                      className="form-check-input"
-                    />
-                    <label key={item.id} className="form-check-label">
-                      {item.name}
+                  <ul className="custom-control custom-checkbox">
+                    <label>
+                      <Checkbox
+                        checked={this.state.checked}
+                        onChange={this.handleCheckboxChange}
+                      />
+                      <span style={{ marginLeft: 8 }}>{item.name}</span>
                     </label>
                   </ul>
                 ))}

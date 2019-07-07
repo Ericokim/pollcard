@@ -3,7 +3,7 @@ import { FaRegCommentDots, FaRegThumbsUp, FaShareAlt } from "react-icons/fa";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import Modal from "./ShareModal";
-import Likebtn from "./Likebtn";
+
 import "./style.scss";
 
 class IconButtons extends Component {

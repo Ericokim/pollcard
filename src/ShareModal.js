@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-
+import { TelegramShareButton, WhatsappShareButton } from "react-share";
 import {
   FaPinterest,
-  FaGooglePlus,
   FaEnvelope,
   FaFacebook,
   FaLinkedin,
@@ -11,28 +10,28 @@ import {
   FaTelegram,
   Fawhatsapp
 } from "react-icons/fa";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 import { ShareButtonIconOnly, ShareBlockStandard } from "react-custom-share";
 // import TestShr from "./Testshare";
 import "./style.scss";
 
 const shareBlockProps = {
+  Instagram: "https://www.instagram.com/accounts/login/",
   url: "https://github.com/greglobinski/react-custom-share",
   button: ShareButtonIconOnly,
   buttons: [
     { network: "Twitter", icon: FaTwitter },
     { network: "Facebook", icon: FaFacebook },
-    { network: "GooglePlus", icon: FaGooglePlus },
     { network: "Email", icon: FaEnvelope },
+    { url: "https://www.instagram.com/accounts/login/", icon: FaInstagram },
     {
       network: "Pinterest",
       icon: FaPinterest,
       media:
         "https://raw.githubusercontent.com/greglobinski/react-custom-share/master/static/react-custom-share.gif"
     },
-    { network: "Linkedin", icon: FaLinkedin },
-    { network: "Instagram", icon: FaInstagram }
+    { network: "Linkedin", icon: FaLinkedin }
   ],
   text: "Give it a try - react-custom-share component",
   longtext:
