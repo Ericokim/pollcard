@@ -1,19 +1,19 @@
 {
   "checkbox": [
     {
-      "id": "1",
+      "id": 1,
       "isChecked": false,
       "name": "Lorem ipsum dolor sit amet, vel at quam massa,",
       "time": null
     },
     {
-      "id": "2",
+      "id": 2,
       "isChecked": false,
       "name": "Lorem ipsum dolor sit amet, vel at quam massa,",
       "time": null
     },
     {
-      "id": "3",
+      "id": 3,
       "isChecked": false,
       "name": "Lorem ipsum dolor sit amet, vel at quam massa,",
       "time": null

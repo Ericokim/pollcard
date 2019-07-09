@@ -122,9 +122,15 @@ body {
   margin-right: 12px;
 } */
 
-/* .custom-checkbox {
-  border: 1px solid  rgb(90, 204, 109);
+.custom-checkbox {
+  border: 1px solid  rgb(109, 229, 250);
   border-radius: 8px;
   width: 100%;
   padding: 10px 0px 10px 16px;
-} */
+}
+
+.custom-control-input{
+  height: 24px;
+  width: 24px;
+  
+}

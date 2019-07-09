@@ -1,60 +1,70 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Checkbox from "./component/Checkbox";
 import Footerbtn from "./FooterBtn";
 import { Card } from "react-bootstrap";
 import { FaCommentDots, FaThumbsUp } from "react-icons/fa";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import CheckBox from "./component/Checkbox";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checkbox: [],
-      likes: 124
-      // time: new Date().toLocaleString()
+      checkbox: []
     };
   }
 
-  // handleCheckboxChange = event => {
-  //   this.setState({ checked: event.target.checked });
-  // };
+  handleAllChecked = event => {
+    let checkbox = this.state.checkbox;
+    checkbox.forEach(item => (item.isChecked = event.target.checked));
+    this.setState({ checkbox: checkbox });
+  };
 
-  handleChange(e) {
+  handleCheckFieldElement = e => {
     let checkbox = this.state.checkbox;
     checkbox.forEach(item => {
       if (item.name === e.target.name) item.isChecked = e.target.checked;
     });
     this.setState({ checkbox: checkbox });
-  }
+  };
 
   componentDidMount() {
-    axios
-      .get("http://localhost:3000/checkbox")
-      .then(res => {
-        const checkbox = res.data;
-        this.setState({ checkbox });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    axios.get("http://localhost:3000/checkbox").then(res => {
+      const checkbox = res.data;
+      this.setState({ checkbox });
+    });
   }
+
+  // onSubmit = e => {
+  //   e.preventDefault();
+  //   console.log(this.state);
+  //   // const item = {
+  //   //   checkedItems: this.state.checkedItems
+  //   // };
+
+  //   // axios.post(`http://localhost:3000/checkedpolls`, { item }).then(res => {
+  //   //   console.log(res);
+  //   //   console.log(res.data);
+  //   // });
+  // };
 
   onSubmit = e => {
     e.preventDefault();
     console.log(this.state);
-    // const item = {
-    //   checkedItems: this.state.checkedItems
+
+    // let arr = [];
+    // for (var key in this.state) {
+    //   if (this.state[key] === true) {
+    //     arr.push(key);
+    //   }
+    // }
+    // let data = {
+    //   check: arr.toString()
     // };
-
-    // axios.post(`http://localhost:3000/checkbox`, { item }).then(res => {
-    //   console.log(res);
-    //   console.log(res.data);
-    // });
+    // axios
+    //   .post("http://localhost:3002/checkedpolls", data)
+    //   .then(res => console.log(res.data));
   };
-
-  state = { checked: false };
 
   render() {
     const { checkbox } = this.state;
@@ -69,20 +79,21 @@ class App extends Component {
               </h2>
             </Card.Title>
             <form onSubmit={this.onSubmit}>
-              <div>
-                {checkbox.map(item => (
-                  <ul className="custom-control custom-checkbox">
-                    <label>
-                      <Checkbox
-                        checked={this.state.checked}
-                        onChange={this.handleCheckboxChange}
-                      />
-                      <span style={{ marginLeft: 8 }}>{item.name}</span>
-                    </label>
-                  </ul>
-                ))}
-              </div>
-
+              <input
+                type="checkbox"
+                onClick={this.handleAllChecked}
+                name="checkedall"
+              />
+              Select All
+              {checkbox.map(item => (
+                <CheckBox
+                  key={item.id}
+                  handleCheckFieldElement={this.handleCheckFieldElement.bind(
+                    this
+                  )}
+                  {...item}
+                />
+              ))}
               <div className="form-group-container">
                 <div className="form-group">
                   <button className="confirm_button">Confirm</button>

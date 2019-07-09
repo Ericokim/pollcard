@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { TelegramShareButton, WhatsappShareButton } from "react-share";
 import {
   FaPinterest,
   FaEnvelope,
@@ -7,8 +6,7 @@ import {
   FaLinkedin,
   FaTwitter,
   FaInstagram,
-  FaTelegram,
-  Fawhatsapp
+  
 } from "react-icons/fa";
 import { Modal } from "react-bootstrap";
 
