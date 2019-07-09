@@ -83,16 +83,19 @@ class App extends Component {
                 type="checkbox"
                 onClick={this.handleAllChecked}
                 name="checkedall"
+                className="form-check-input"
               />
               Select All
               {checkbox.map(item => (
-                <CheckBox
-                  key={item.id}
-                  handleCheckFieldElement={this.handleCheckFieldElement.bind(
-                    this
-                  )}
-                  {...item}
-                />
+                <div>
+                  <CheckBox
+                    key={item.id}
+                    handleCheckFieldElement={this.handleCheckFieldElement.bind(
+                      this
+                    )}
+                    {...item}
+                  />
+                </div>
               ))}
               <div className="form-group-container">
                 <div className="form-group">

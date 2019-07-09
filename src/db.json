@@ -3,19 +3,25 @@
     {
       "id": 1,
       "isChecked": false,
-      "name": "Lorem ipsum dolor sit amet, vel at quam massa,",
+      "name": "This is my First Sentense ",
       "time": null
     },
     {
       "id": 2,
       "isChecked": false,
-      "name": "Lorem ipsum dolor sit amet, vel at quam massa,",
+      "name": "This is my Second Sentense ",
       "time": null
     },
     {
       "id": 3,
       "isChecked": false,
-      "name": "Lorem ipsum dolor sit amet, vel at quam massa,",
+      "name": "This is my Third Sentense ",
+      "time": null
+    },
+    {
+      "id": 4,
+      "isChecked": false,
+      "name": "This is my Forth Sentense ",
       "time": null
     }
   ]

@@ -1,22 +1,23 @@
 import React from "react";
 
+import "../App.css";
+
 export const CheckBox = props => {
   return (
-    <div className="form-check">
-      <ul className="custom-control custom-checkbox">
+    <ul className="round ">
+      <div>
         <input
-          type="checkbox"
           id={props.id}
           onChange={props.handleCheckFieldElement}
+          type="checkbox"
           checked={props.isChecked}
           name={props.name}
-          className="custom-control-input "
+          className="checkbox-input"
         />
-        <label className="custom-control-label" htmlFor={props.id}>
-          {props.name}
-        </label>
-      </ul>
-    </div>
+        <label className="checkbox-label" key={props.id} for={props.id} />
+        {props.name}
+      </div>
+    </ul>
   );
 };
 
