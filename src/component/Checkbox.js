@@ -8,13 +8,14 @@ export const CheckBox = props => {
       <div>
         <input
           id={props.id}
-          onChange={props.handleCheckFieldElement}
+          key={props.id}
           type="checkbox"
+          onChange={props.handleCheckFieldElement}
           checked={props.isChecked}
           name={props.name}
           className="checkbox-input"
         />
-        <label className="checkbox-label" key={props.id} for={props.id} />
+        <label className="checkbox-label" htmlFor={props.id} />
         {props.name}
       </div>
     </ul>

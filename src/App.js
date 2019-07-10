@@ -5,12 +5,14 @@ import { Card } from "react-bootstrap";
 import { FaCommentDots, FaThumbsUp } from "react-icons/fa";
 import "./App.css";
 import CheckBox from "./component/Checkbox";
+import LikeButton from "./component/LikeButton";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checkbox: []
+      checkbox: [],
+      likes: 124
     };
   }
 
@@ -71,53 +73,61 @@ class App extends Component {
 
     return (
       <div className="container">
-        <Card>
-          <Card.Body>
-            <Card.Title>
-              <h2 className="post_heading">
-                Save the multiple checkbox values in React js
-              </h2>
-            </Card.Title>
-            <form onSubmit={this.onSubmit}>
-              <input
-                type="checkbox"
-                onClick={this.handleAllChecked}
-                name="checkedall"
-                className="form-check-input"
-              />
-              Select All
-              {checkbox.map(item => (
-                <div>
-                  <CheckBox
-                    key={item.id}
-                    handleCheckFieldElement={this.handleCheckFieldElement.bind(
-                      this
-                    )}
-                    {...item}
-                  />
-                </div>
-              ))}
-              <div className="form-group-container">
-                <div className="form-group">
-                  <button className="confirm_button">Confirm</button>
-                </div>
-
-                <div className="form-group-icon">
-                  <div className="dark-thumb">
-                    <FaThumbsUp /> {this.state.likes}
+        <div className="wrapper">
+          <Card>
+            <Card.Body>
+              <Card.Title>
+                <h2 className="post_heading">
+                  Save the multiple checkbox values in React js
+                </h2>
+              </Card.Title>
+              <form onSubmit={this.onSubmit}>
+                {/* <ul className="checkall ">
+                  <div>
+                    <input
+                      type="checkbox"
+                      onClick={this.handleAllChecked}
+                      name="checkedall"
+                      id="checkbox"
+                    />
+                    Select All
+                    <label htmlFor="checkbox" />
                   </div>
-                  <div className="dark-comment">
-                    <FaCommentDots /> 25
+                </ul> */}
+                {checkbox.map(item => (
+                  <span>
+                    <CheckBox
+                      key={item.id}
+                      handleCheckFieldElement={this.handleCheckFieldElement.bind(
+                        this
+                      )}
+                      {...item}
+                    />
+                  </span>
+                ))}
+                <div className="form-group-container">
+                  <div className="form-group">
+                    <button className="confirm_button">Confirm</button>
+                  </div>
+
+                  <div className="form-group-icon">
+                    <div className="dark-thumb">
+                      {/* <LikeButton /> */}
+                      <FaThumbsUp /> {this.state.likes}
+                    </div>
+                    <div className="dark-comment">
+                      <FaCommentDots /> 25
+                    </div>
                   </div>
                 </div>
-              </div>
-            </form>
-          </Card.Body>
+              </form>
+            </Card.Body>
 
-          <Card.Footer>
-            <Footerbtn />
-          </Card.Footer>
-        </Card>
+            <Card.Footer>
+              <Footerbtn />
+            </Card.Footer>
+          </Card>
+        </div>
       </div>
     );
   }
