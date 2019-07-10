@@ -5,8 +5,7 @@ import {
   FaFacebook,
   FaLinkedin,
   FaTwitter,
-  FaInstagram,
-  
+  FaInstagram
 } from "react-icons/fa";
 import { Modal } from "react-bootstrap";
 
@@ -45,8 +44,13 @@ export default class ShareModal extends Component {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Body>
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
           <h4>Share This Page on:</h4>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* <h4>Share This Page on:</h4> */}
           <div className="socialShareContainer">
             <div>
               <ShareBlockStandard {...shareBlockProps} />

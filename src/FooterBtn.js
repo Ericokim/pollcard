@@ -19,7 +19,6 @@ class IconButtons extends Component {
     };
 
     this.updateLikes = this.updateLikes.bind(this);
-    this.shareOpenToggle = this.shareOpenToggle.bind(this);
   }
 
   // handles like state
@@ -43,35 +42,15 @@ class IconButtons extends Component {
       });
     }
   }
-  // handles share state
 
-  shareOpenToggle() {
-    if (this.state.shareOpen === "closeShare") {
-      this.setState({
-        shareOpen: "openShare"
-      });
-    } else {
-      this.setState({
-        shareOpen: "closeShare",
-        toggleButtonText: "  Share"
-      });
-    }
-  }
 
   render() {
-    //URL from current page
-    const url = window.location.href;
-    //URL patterns for Social media sites share functionalities
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-    const twitterUrl = `https://twitter.com/home?status=${url}`;
-    const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}`;
-
     // Modal for share button
     let modalClose = () => this.setState({ modalShow: false });
 
     return (
       <div className="icon_card">
-        <Button
+        <span
           variant="light"
           className="icon_wrapper"
           style={{ color: this.state.Color }}
@@ -79,43 +58,23 @@ class IconButtons extends Component {
         >
           <FaRegThumbsUp className="icon" /> Like
           {/* {this.state.likes} */}
-        </Button>
-        <Button className="icon_wrapper" variant="light">
+        </span>
+        <span className="icon_wrapper" variant="light">
           <FaRegCommentDots className="icon" /> Comment
-        </Button>
+        </span>
 
         <div className="socialShareContainer">
-          {/* <div
-            className="icon_wrapper"
-            onClick={() => this.setState({ modalShow: true })}
-          >
-            <FaShareAlt className="icon" /> {this.state.toggleButtonText}
-            <Modal show={this.state.modalShow} onHide={modalClose} />
-          </div> */}
-
           <ButtonToolbar className="socialShareContainer">
-            <Button
+            <span
               className="icon_wrapper"
               variant="light"
               onClick={() => this.setState({ modalShow: true })}
             >
               <FaShareAlt className="icon" /> {this.state.toggleButtonText}
-            </Button>
+            </span>
 
             <Modal show={this.state.modalShow} onHide={modalClose} />
           </ButtonToolbar>
-
-          <div className={this.state.shareOpen}>
-            <a href={facebookUrl} target="facebookUrl">
-              <FaFacebookF />
-            </a>
-            <a href={linkedinUrl} target="twitterUrl">
-              <FaLinkedinIn />
-            </a>
-            <a href={twitterUrl} target="linkedinUrl">
-              <FaTwitter />
-            </a>
-          </div>
         </div>
       </div>
     );
