@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
+
 export default class LikeButton extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,7 @@ export default class LikeButton extends Component {
           likes: prevState.likes + 1,
           updated: true,
           Color: "#DC2D08",
-          className: <FaRegThumbsUp className="heartFull"/>
+          className: <FaRegThumbsUp className="heartFull" />
         };
       });
     } else {
@@ -42,10 +43,10 @@ export default class LikeButton extends Component {
       <div>
         <span
           variant="light"
-            className="icon_wrapper"
+          className="icon_wrapper"
           style={{ color: this.state.Color }}
           onClick={this.updateLikes.bind(this)}
-        //   className={this.state.className}
+          //   className={this.state.className}
         >
           <FaRegThumbsUp className="icon" /> {this.state.likes}
         </span>

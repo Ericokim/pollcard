@@ -1,15 +1,15 @@
 {
-  "checkbox": [
+  "Polls": [
     {
       "id": 1,
       "isChecked": false,
-      "name": "This is my First Sentense ",
+      "name": "This is my First Sentense qwertyuiowertyu",
       "time": null
     },
     {
       "id": 2,
       "isChecked": false,
-      "name": "This is my Second Sentense ",
+      "name": "This is my Second Sentense qwertyusyuqwe ",
       "time": null
     },
     {

@@ -4,6 +4,7 @@ import { ButtonToolbar } from "react-bootstrap";
 import Modal from "./ShareModal";
 
 import "./style.scss";
+import LikeButton from "./component/LikeButton";
 
 class IconButtons extends Component {
   constructor(props) {
@@ -54,7 +55,8 @@ class IconButtons extends Component {
           style={{ color: this.state.Color }}
           onClick={this.updateLikes}
         >
-          <FaRegThumbsUp className="icon" /> {this.state.likes}
+          {/* <FaRegThumbsUp className="icon" /> {this.state.likes} */}
+          <LikeButton />
         </span>
         <span className="icon_wrapper" variant="light">
           <FaRegCommentDots className="icon" /> Comment

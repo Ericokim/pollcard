@@ -5,35 +5,44 @@ import { Card } from "react-bootstrap";
 import { FaCommentDots, FaThumbsUp } from "react-icons/fa";
 import "./App.css";
 import CheckBox from "./component/Checkbox";
+import { TimeAgo } from "@n1ru4l/react-time-ago";
 import LikeButton from "./component/LikeButton";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checkbox: [],
-      likes: 124
+      polls: [],
+      Color: ""
     };
   }
 
   handleAllChecked = event => {
-    let checkbox = this.state.checkbox;
-    checkbox.forEach(item => (item.isChecked = event.target.checked));
-    this.setState({ checkbox: checkbox });
+    let polls = this.state.polls;
+    polls.forEach(item => (item.isChecked = event.target.checked));
+    this.setState({ polls: polls });
   };
 
   handleCheckFieldElement = e => {
-    let checkbox = this.state.checkbox;
-    checkbox.forEach(item => {
+    let polls = this.state.polls;
+    polls.forEach(item => {
       if (item.name === e.target.name) item.isChecked = e.target.checked;
     });
-    this.setState({ checkbox: checkbox });
+    this.setState({ polls: polls });
   };
 
+  // handleLikeFieldElement = e => {
+  //   let checkbox = this.state.checkbox;
+  //   checkbox.forEach(item => {
+  //     if (item.name === e.target.name) item.isChecked = e.target.checked;
+  //   });
+  //   this.setState({ checkbox: checkbox });
+  // };
+
   componentDidMount() {
-    axios.get("http://localhost:3000/checkbox").then(res => {
-      const checkbox = res.data;
-      this.setState({ checkbox });
+    axios.get("http://localhost:3000/Polls").then(res => {
+      const polls = res.data;
+      this.setState({ polls });
     });
   }
 
@@ -69,8 +78,8 @@ class App extends Component {
   };
 
   render() {
-    const { checkbox } = this.state;
-
+    const { polls } = this.state;
+    // const initialDate = new Date();
     return (
       <div className="container">
         <div className="wrapper">
@@ -94,15 +103,17 @@ class App extends Component {
                     <label htmlFor="checkbox" />
                   </div>
                 </ul> */}
-                {checkbox.map(item => (
-                  <span>
-                    <CheckBox
-                      key={item.id}
-                      handleCheckFieldElement={this.handleCheckFieldElement.bind(
-                        this
-                      )}
-                      {...item}
-                    />
+                {polls.map(item => (
+                  <span key={item.id} className="custom-checkbox">
+                    <label className="round">
+                      <CheckBox
+                        key={item.id}
+                        handleCheckFieldElement={this.handleCheckFieldElement.bind(
+                          this
+                        )}
+                        {...item}
+                      />
+                    </label>
                   </span>
                 ))}
                 <div className="form-group-container">
@@ -112,11 +123,16 @@ class App extends Component {
 
                   <div className="form-group-icon">
                     <div className="dark-thumb">
-                      {/* <LikeButton /> */}
-                      <FaThumbsUp /> {this.state.likes}
+                      <LikeButton />
+                      {/* <FaThumbsUp /> {this.state.likes} */}
                     </div>
                     <div className="dark-comment">
                       <FaCommentDots /> 25
+                    </div>
+                    <div className="time">
+                      <TimeAgo date={new Date()}>
+                        {({ value }) => <li>{value}</li>}
+                      </TimeAgo>
                     </div>
                   </div>
                 </div>
