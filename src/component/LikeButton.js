@@ -5,8 +5,6 @@ export default class LikeButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalShow: false,
-      toggleButtonText: "  Share",
       likes: 124,
       updated: false,
       Color: "",
@@ -23,7 +21,6 @@ export default class LikeButton extends Component {
           likes: prevState.likes + 1,
           updated: true,
           Color: "#DC2D08",
-          className: <FaRegThumbsUp className="heartFull" />
         };
       });
     } else {
@@ -36,9 +33,11 @@ export default class LikeButton extends Component {
         };
       });
     }
+    
   }
 
   render() {
+      
     return (
       <div>
         <span

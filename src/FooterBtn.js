@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FaRegCommentDots, FaRegThumbsUp, FaShareAlt } from "react-icons/fa";
+import { FaRegCommentDots, FaShareAlt } from "react-icons/fa";
 import { ButtonToolbar } from "react-bootstrap";
 import Modal from "./ShareModal";
 

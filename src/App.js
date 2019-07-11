@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import Footerbtn from "./FooterBtn";
 import { Card } from "react-bootstrap";
-import { FaCommentDots, FaThumbsUp } from "react-icons/fa";
+import { FaCommentDots } from "react-icons/fa";
 import "./App.css";
 import CheckBox from "./component/Checkbox";
-import { TimeAgo } from "@n1ru4l/react-time-ago";
+// import { TimeAgo } from "@n1ru4l/react-time-ago";
 import LikeButton from "./component/LikeButton";
 
 class App extends Component {
@@ -31,33 +31,12 @@ class App extends Component {
     this.setState({ polls: polls });
   };
 
-  // handleLikeFieldElement = e => {
-  //   let checkbox = this.state.checkbox;
-  //   checkbox.forEach(item => {
-  //     if (item.name === e.target.name) item.isChecked = e.target.checked;
-  //   });
-  //   this.setState({ checkbox: checkbox });
-  // };
-
   componentDidMount() {
     axios.get("http://localhost:3000/Polls").then(res => {
       const polls = res.data;
       this.setState({ polls });
     });
   }
-
-  // onSubmit = e => {
-  //   e.preventDefault();
-  //   console.log(this.state);
-  //   // const item = {
-  //   //   checkedItems: this.state.checkedItems
-  //   // };
-
-  //   // axios.post(`http://localhost:3000/checkedpolls`, { item }).then(res => {
-  //   //   console.log(res);
-  //   //   console.log(res.data);
-  //   // });
-  // };
 
   onSubmit = e => {
     e.preventDefault();
@@ -73,7 +52,7 @@ class App extends Component {
     //   check: arr.toString()
     // };
     // axios
-    //   .post("http://localhost:3002/checkedpolls", data)
+    //   .post("http://localhost:3000/Polls", data)
     //   .then(res => console.log(res.data));
   };
 
@@ -104,8 +83,14 @@ class App extends Component {
                   </div>
                 </ul> */}
                 {polls.map(item => (
-                  <span key={item.id} className="custom-checkbox">
-                    <label className="round">
+                  <span key={item.id} className="">
+                    <label
+                      className={
+                        item.isChecked === true
+                          ? "round-checked"
+                          : "round-unchecked"
+                      }
+                    >
                       <CheckBox
                         key={item.id}
                         handleCheckFieldElement={this.handleCheckFieldElement.bind(
@@ -127,13 +112,14 @@ class App extends Component {
                       {/* <FaThumbsUp /> {this.state.likes} */}
                     </div>
                     <div className="dark-comment">
-                      <FaCommentDots /> 25
+                      <FaCommentDots />
+                      <span style={{ marginLeft: 8 }}>25</span>
                     </div>
-                    <div className="time">
+                    {/* <div className="time">
                       <TimeAgo date={new Date()}>
-                        {({ value }) => <li>{value}</li>}
+                        {({ value }) => <span>{value}</span>}
                       </TimeAgo>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </form>
