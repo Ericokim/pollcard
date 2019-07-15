@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { FaRegCommentDots, FaShareAlt } from "react-icons/fa";
 import { ButtonToolbar } from "react-bootstrap";
-import Modal from "./ShareModal";
+import Modal from "../ShareModal/ShareModal";
 
-import "./style.scss";
-import LikeButton from "./component/LikeButton";
+import "../../style.scss";
+import LikeButton from "../Likebutton/LikeButton";
 
 class IconButtons extends Component {
   constructor(props) {

@@ -27,6 +27,8 @@ label {
   position: relative;
   border: 1px solid rgb(168, 168, 168);
   background-color: #fff;
+  transition: 0.2s;
+  transition: transform 0.1s ease-in-out;
 }
 
 label input[type="checkbox"] {
@@ -37,6 +39,7 @@ label input[type="checkbox"] {
   border: 1px solid rgb(90, 111, 204);
   box-shadow: 0px 1px 3px rgb(90, 111, 204);
   color: rgb(31, 64, 211);
+  transform: scale(1.025);
 }
 
 .round-unchecked label {
@@ -46,6 +49,7 @@ label input[type="checkbox"] {
   width: 28px;
   left: -13px;
   top: 8px;
+  
 }
 
 .round-checked label {

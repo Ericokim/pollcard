@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Footerbtn from "./FooterBtn";
+import Footerbtn from "./component/FooterLayout/FooterBtn";
 import { Card } from "react-bootstrap";
 import { FaCommentDots } from "react-icons/fa";
 import "./App.css";
-import CheckBox from "./component/Checkbox";
+import CheckBox from "./component/Checkbox/Checkbox";
 // import { TimeAgo } from "@n1ru4l/react-time-ago";
-import LikeButton from "./component/LikeButton";
+import LikeButton from "./component/Likebutton/LikeButton";
 
 class App extends Component {
   constructor(props) {
