@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../../App.css";
+import "../style.scss";
 
 export const CheckBox = props => {
   return (
@@ -8,7 +8,7 @@ export const CheckBox = props => {
       <input
         id={props.id}
         key={props.id}
-        type="checkbox"
+        type="radio"
         onChange={props.handleCheckFieldElement}
         checked={props.isChecked}
         name={props.name}

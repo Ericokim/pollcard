@@ -11,7 +11,7 @@ import { Modal } from "react-bootstrap";
 
 import { ShareButtonIconOnly, ShareBlockStandard } from "react-custom-share";
 // import TestShr from "./Testshare";
-import "../../style.scss";
+import "../style.scss";
 
 const shareBlockProps = {
   Instagram: "https://www.instagram.com/accounts/login/",
