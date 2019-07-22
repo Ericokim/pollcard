@@ -1,28 +1,34 @@
 {
-  "Polls": [
+  "trivia": [
     {
-      "id": 1,
-      "isChecked": false,
-      "name": "This is my First Sentense qwertyuiowertyu",
-      "time": null
-    },
-    {
-      "id": 2,
-      "isChecked": false,
-      "name": "This is my Second Sentense qwertyusyuqwe ",
-      "time": null
-    },
-    {
-      "id": 3,
-      "isChecked": false,
-      "name": "This is my Third Sentense ",
-      "time": null
-    },
-    {
-      "id": 4,
-      "isChecked": false,
-      "name": "This is my Forth Sentense ",
-      "time": null
+      "question": "Save the multiple checkbox values in React js",
+      "correct-answer": "This is my First Sentense qwertyuiowertyu",
+      "polls": [
+        {
+          "id": 1,
+          "isChecked": false,
+          "name": "This is my First Sentense qwertyuiowertyu",
+          "time": null
+        },
+        {
+          "id": 2,
+          "isChecked": false,
+          "name": "This is my Second Sentense qwertyusyuqwe ",
+          "time": null
+        },
+        {
+          "id": 3,
+          "isChecked": false,
+          "name": "This is my Third Sentense ",
+          "time": null
+        },
+        {
+          "id": 4,
+          "isChecked": false,
+          "name": "This is my Forth Sentense ",
+          "time": null
+        }
+      ]
     }
   ]
 }

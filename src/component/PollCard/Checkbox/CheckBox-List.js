@@ -5,31 +5,47 @@ import { Card } from "react-bootstrap";
 import { FaCommentDots } from "react-icons/fa";
 import "../style.scss";
 import CheckBox from "./Checkbox";
-import Logs from "../Logs/logs";
+
 import LikeButton from "../Likebutton/LikeButton";
 
 class CheckList extends Component {
+  polls = [];
   constructor(props) {
     super(props);
     this.state = {
-      polls: [],
+      trivia: [],
       Color: "",
       isHidden: false
     };
   }
 
   handleCheckFieldElement = e => {
-    let polls = this.state.polls;
+    let polls = this.state.trivia[0].polls;
+
     polls.forEach(item => {
-      if (item.name === e.target.name) item.isChecked = e.target.checked;
+      if (item.name === e.target.name) {
+        item.isChecked = e.target.checked;
+      } else {
+        item.isChecked = false;
+      }
     });
-    this.setState({ polls: polls });
+    const newT = this.state.trivia;
+    newT[0].polls = polls
+    this.setState({ trivia: newT });
+    console.log(polls);
   };
 
+  // displayQuestion = () => {
+  //   this.setState({
+  //     displayQuestions: !this.state.displayQuestions
+  //   });
+  // };
+
   componentDidMount() {
-    axios.get("http://localhost:3000/Polls").then(res => {
-      const polls = res.data;
-      this.setState({ polls });
+    axios.get("http://localhost:3000/trivia").then(res => {
+      const trivia = res.data;
+      this.polls = trivia[0].polls;
+      this.setState({ trivia });
     });
   }
 
@@ -40,10 +56,25 @@ class CheckList extends Component {
     this.setState({
       isHidden: !this.state.isHidden
     });
+
+    // let arr = [];
+    // for (var key in this.state) {
+    //   if (this.state[key] === true) {
+    //     arr.push(key);
+    //   }
+    // }
+    // let data = {
+    //   check: arr.toString()
+    // };
+    // axios
+    //   .post("http://localhost:3000/Polls", data)
+    //   .then(res => console.log(res.data));
   };
 
   render() {
-    const { polls } = this.state;
+    const { trivia } = this.state;
+    // const {polls = []} = trivia[0]
+    // console.log(polls[0]);
 
     return (
       <div className="container">
@@ -56,8 +87,8 @@ class CheckList extends Component {
                 </h2>
               </Card.Title>
               <form onSubmit={this.onSubmit}>
-                {polls.map(item => (
-                  <React.Fragment key={item.id} className="">
+                {this.polls.map(item => (
+                  <span key={item.id} className="">
                     <label
                       className={
                         item.isChecked === true
@@ -72,7 +103,7 @@ class CheckList extends Component {
                         {...item}
                       />
                     </label>
-                  </React.Fragment>
+                  </span>
                 ))}
                 <div className="form-group-container">
                   <div className="form-group">
@@ -99,24 +130,29 @@ class CheckList extends Component {
         </div>
         <br />
         <br />
-
-        {this.state.isHidden && (
-          <div>
-            {polls.map(item => {
-              if (item.isChecked === true)
-                return (
-                  <div>
-                    <div key={item.id} className="item-card">
-                      <ul>
-                        <h2 className="tagline">Answer</h2>
-                        {item.name}
-                      </ul>
+        <div>
+          {this.state.isHidden && (
+            <div>
+              {/* {polls.map(item => {
+                if (item.isChecked === true)
+                  return (
+                    <div>
+                      <br />
+                      <br />
+                      <br />
+                      <br />
+                      <div key={item.id} className="item-card">
+                        <ul>
+                          <h2 className="tagline">Answer</h2>
+                          {item.name}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                );
-            })}
-          </div>
-        )}
+                  );
+              })} */}
+            </div>
+          )}
+        </div>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CheckList from "./Checkbox/CheckBox-List";
-import Logs from "./Logs/logs";
+// import Logs from "./Logs/logs";
 
 import "./style.scss";
 
