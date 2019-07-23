@@ -55,7 +55,6 @@ class IconButtons extends Component {
           style={{ color: this.state.Color }}
           onClick={this.updateLikes}
         >
-          {/* <FaRegThumbsUp className="icon" /> {this.state.likes} */}
           <LikeButton />
         </span>
         <span className="icon_wrapper" variant="light">

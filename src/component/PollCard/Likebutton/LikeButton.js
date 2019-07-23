@@ -20,7 +20,7 @@ export default class LikeButton extends Component {
         return {
           likes: prevState.likes + 1,
           updated: true,
-          Color: "#DC2D08",
+          Color: "#DC2D08"
         };
       });
     } else {
@@ -33,11 +33,9 @@ export default class LikeButton extends Component {
         };
       });
     }
-    
   }
 
   render() {
-      
     return (
       <div>
         <span

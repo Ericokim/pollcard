@@ -1,26 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Footerbtn from "../FooterLayout/FooterBtn";
-import { Card } from "react-bootstrap";
 import { FaCommentDots } from "react-icons/fa";
-import "../style.scss";
 import CheckBox from "./Checkbox";
-
 import LikeButton from "../Likebutton/LikeButton";
+import "../style.scss";
 
 class CheckList extends Component {
-  polls = [];
   constructor(props) {
     super(props);
     this.state = {
-      trivia: [],
-      Color: "",
-      isHidden: false
+      answer: null,
+      isHidden: false,
+      isSubmitted: false
     };
   }
 
   handleCheckFieldElement = e => {
-    let polls = this.state.trivia[0].polls;
+    /* let polls = this.state.trivia[0].polls;
 
     polls.forEach(item => {
       if (item.name === e.target.name) {
@@ -30,16 +27,28 @@ class CheckList extends Component {
       }
     });
     const newT = this.state.trivia;
-    newT[0].polls = polls
+    newT[0].polls = polls;
     this.setState({ trivia: newT });
-    console.log(polls);
-  };
+    // console.log(polls); */
 
-  // displayQuestion = () => {
-  //   this.setState({
-  //     displayQuestions: !this.state.displayQuestions
-  //   });
-  // };
+    const { answer } = this.state;
+    const id = e.target.id;
+    console.log(answer);
+
+    // if (answer) {
+    //   this.setState({
+    //     answer: null
+    //   });
+    // } else {
+    //   this.setState({
+    //     answer: id
+    //   });
+    // }
+
+    this.setState({
+      answer: id
+    });
+  };
 
   componentDidMount() {
     axios.get("http://localhost:3000/trivia").then(res => {
@@ -51,108 +60,72 @@ class CheckList extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
 
     this.setState({
+      isSubmitted: true,
       isHidden: !this.state.isHidden
     });
 
-    // let arr = [];
-    // for (var key in this.state) {
-    //   if (this.state[key] === true) {
-    //     arr.push(key);
-    //   }
-    // }
-    // let data = {
-    //   check: arr.toString()
-    // };
-    // axios
-    //   .post("http://localhost:3000/Polls", data)
-    //   .then(res => console.log(res.data));
+    this.props.handleSubmit(this.state.answer);
   };
 
   render() {
-    const { trivia } = this.state;
+    // const { trivia } = this.state;
     // const {polls = []} = trivia[0]
     // console.log(polls[0]);
 
+    const { question, options, responses, type } = this.props.poll;
+    console.log(this.props.poll);
+
     return (
-      <div className="container">
-        <div className="wrapper">
-          <Card>
-            <Card.Body>
-              <Card.Title>
-                <h2 className="post_heading">
-                  Save the multiple checkbox values in React js
-                </h2>
-              </Card.Title>
-              <form onSubmit={this.onSubmit}>
-                {this.polls.map(item => (
-                  <span key={item.id} className="">
-                    <label
-                      className={
-                        item.isChecked === true
-                          ? "round-checked"
-                          : "round-unchecked"
-                      }
-                    >
-                      <CheckBox
-                        handleCheckFieldElement={this.handleCheckFieldElement.bind(
-                          this
-                        )}
-                        {...item}
-                      />
-                    </label>
-                  </span>
-                ))}
-                <div className="form-group-container">
-                  <div className="form-group">
-                    <button className="confirm_button">Confirm</button>
-                  </div>
+      <div>
+        <div className="poll-container">
+          <div className="post_heading_wrapper">
+            <h2 className="post_heading">{question}</h2>
+          </div>
+          <form onSubmit={this.onSubmit}>
+            {options.map(({ id, count, text }) => (
+              <span key={id}>
+                <label
+                  className={
+                    this.state.answer == id
+                      ? "round-checked"
+                      : "round-unchecked"
+                  }
+                >
+                  <CheckBox
+                    id={id}
+                    name={text}
+                    isChecked={this.state.answer == id}
+                    handleCheckFieldElement={this.handleCheckFieldElement}
+                  />
 
-                  <div className="form-group-icon">
-                    <div className="dark-thumb">
-                      <LikeButton />
-                    </div>
-                    <div className="dark-comment">
-                      <FaCommentDots />
-                      <span style={{ marginLeft: 8 }}>25</span>
-                    </div>
-                  </div>
+                  {this.state.isSubmitted && (
+                    <span className="poll-responses">{`${Math.round(
+                      (count / responses) * 100
+                    )}%`}</span>
+                  )}
+                </label>
+              </span>
+            ))}
+            <div className="form-group-container">
+              <div className="form-group">
+                <button className="confirm_button">Confirm</button>
+              </div>
+
+              <div className="form-group-icon">
+                <div className="dark-thumb">
+                  <LikeButton />
                 </div>
-              </form>
-            </Card.Body>
-
-            <Card.Footer>
-              <Footerbtn />
-            </Card.Footer>
-          </Card>
-        </div>
-        <br />
-        <br />
-        <div>
-          {this.state.isHidden && (
-            <div>
-              {/* {polls.map(item => {
-                if (item.isChecked === true)
-                  return (
-                    <div>
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <div key={item.id} className="item-card">
-                        <ul>
-                          <h2 className="tagline">Answer</h2>
-                          {item.name}
-                        </ul>
-                      </div>
-                    </div>
-                  );
-              })} */}
+                <div className="dark-comment">
+                  <FaCommentDots />
+                  <span style={{ marginLeft: 8 }}>25</span>
+                </div>
+              </div>
             </div>
-          )}
+          </form>
         </div>
+        <Footerbtn />
       </div>
     );
   }

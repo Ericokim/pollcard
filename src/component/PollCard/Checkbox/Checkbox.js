@@ -2,21 +2,20 @@ import React from "react";
 
 import "../style.scss";
 
-export const CheckBox = props => {
+export const CheckBox = ({ id, isChecked, name, handleCheckFieldElement }) => {
   return (
-    <div className="checkbox">
+    <span>
       <input
-        id={props.id}
-        key={props.id}
+        id={id}
+        key={id}
         type="radio"
-        onChange={props.handleCheckFieldElement}
-        checked={props.isChecked}
-        name={props.name}
-        className=""
+        onChange={handleCheckFieldElement}
+        checked={isChecked}
+        name={name}
       />
-      <label className="" htmlFor={props.id} />
-      {props.name}
-    </div>
+      <label htmlFor={id} />
+      {name}
+    </span>
   );
 };
 
